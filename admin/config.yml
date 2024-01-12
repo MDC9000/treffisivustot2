@@ -1,0 +1,991 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master2
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: treffit
+    label: Treffits
+    folder: cms/treffit
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Property Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: Rent or Sale?
+        name: f_listing-type
+        label: Listing Type
+        widget: string
+        required: false
+      - hint: ''
+        name: f_rent-or-sale-price
+        label: Rent or Sale Price
+        widget: number
+        required: false
+      - hint: ''
+        name: f_available
+        label: Available?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_number-of-rooms
+        label: Number of Rooms
+        widget: number
+        required: false
+      - hint: ''
+        name: f_number-of-baths
+        label: Number of Baths
+        widget: number
+        required: false
+      - hint: ''
+        name: f_square-feet
+        label: Square Feet
+        widget: number
+        required: false
+      - hint: ''
+        name: f_floorplan
+        label: Floorplan
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_short-description
+        label: Short Description
+        widget: text
+        required: false
+      - hint: ''
+        name: f_image-1
+        label: Image 1
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_image-2
+        label: Image 2
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_image-3
+        label: Image 3
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_agent-contact-info
+        label: Agent Contact Info
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: treffit
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[treffit].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: artikkelit
+    label: Artikkelits
+    folder: cms/artikkelit
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_color
+        label: Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: artikkelit
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[artikkelit].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: deittisivustot
+    label: Deittisivustots
+    folder: cms/deittisivustot
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Arvostelu
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_kuvat
+        label: Kuvat
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_linkki
+        label: Linkki
+        widget: string
+        required: false
+      - hint: ''
+        name: f_otsikkokuva
+        label: Otsikkokuva
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_kuvaus
+        label: Kuvaus
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_arvostelu-2
+        label: Arvostelu 2
+        widget: text
+        required: false
+      - hint: ''
+        name: f_kuvaus-2
+        label: Kuvaus 2
+        widget: text
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: deittisivustot
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[deittisivustot].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Etusivu, key: ea6be1b'
+            label: Text
+            name: ea6be1b
+            widget: string
+          - hint: 'Original text: Artikkelit, key: -71c04c88'
+            label: Text
+            name: '-71c04c88'
+            widget: string
+          - hint: 'Original text: Feature, key: 28db12d6'
+            label: Text
+            name: 28db12d6
+            widget: string
+          - hint: 'Original text: Pricing, key: 507137a6'
+            label: Text
+            name: 507137a6
+            widget: string
+          - hint: 'Original text: Suomalaiset Deittisivustot:, key: -44c0d573'
+            label: Text
+            name: '-44c0d573'
+            widget: string
+          - hint: 'Original text: Lue Arvostelu, key: -57c69921'
+            label: Text
+            name: '-57c69921'
+            widget: string
+          - hint: 'Original text: Siirry Sivustolle, key: 6f48c5a6'
+            label: Text
+            name: 6f48c5a6
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: >-
+              Original text: Parhaat Aikuisten Deittisivustot Suomessa, key:
+              -1e277372
+            label: Text
+            name: '-1e277372'
+            widget: string
+          - hint: >-
+              Original text: Haluatko löytää sen oikean, mutta et tiedä mistä
+              aloittaa? Olet tullut oikeaan paikkaan! Treffisivustot.com on
+              kattava tietokanta Suomen johtavista treffisivustoista. Olipa
+              makusi mikä tahansa, löytyy varmastikin sopiva palvelu juuri
+              sinulle., key: -21cd0a5a
+            label: Text
+            name: '-21cd0a5a'
+            widget: text
+          - hint: >-
+              Original text: Laaja valikoima Suomen parhaita treffisivustoja,
+              key: -7d250d4b
+            label: Text
+            name: '-7d250d4b'
+            widget: string
+          - hint: >-
+              Original text: Valittavana on lukematon määrä deittisivustoja,
+              kaikki kuitenkin eivät ole samalla laadulla. Me täällä
+              Treffisivustot.comissa olemme keränneet yhteen parhaimmat
+              suomalaiset treffisivustoja. Lue arvostelumme ja löydä juuri
+              sinulle sopivin palvelu., key: 1c42818a
+            label: Text
+            name: 1c42818a
+            widget: text
+          - hint: 'Original text: Parhaat Suomalaiset Treffisivustot, key: -6aa80df'
+            label: Text
+            name: '-6aa80df'
+            widget: string
+          - hint: >-
+              Original text: Arvostelemme laajasti erilaisia sivustoja
+              helpottaaksemme sinun valintaasi. Voit etsiä erilaisia
+              kategorioita kuten vakavaa parisuhdetta etsivät, satunnaista
+              seuraa kaipaavat tai erikoisempia kiinnostuksen kohteita omaavat
+              sivustot., key: 23be3de7
+            label: Text
+            name: 23be3de7
+            widget: text
+          - hint: >-
+              Original text: Miten valitsen oikean treffisivuston?, key:
+              2fbd873a
+            label: Text
+            name: 2fbd873a
+            widget: string
+          - hint: >-
+              Original text: Valintasi riippuu aina omista tarpeistasi. Etsitkö
+              pitkäaikaista kumppania, tai ehkä casual deittailu on enemmän
+              sinun juttusi? Meidän arvostelumme auttavat sinua tekemään
+              valinnan., key: -7e5f3d3a
+            label: Text
+            name: '-7e5f3d3a'
+            widget: text
+          - hint: 'Original text: Hyödynnä Vinkkimme, key: -27885e1f'
+            label: Text
+            name: '-27885e1f'
+            widget: string
+          - hint: >-
+              Original text: Näillä vinkeillä parannat mahdollisuuksiasi löytää
+              oikeaa seuraa. Deittailu voi tuntua aluksi haastavalta, mutta
+              meidän vinkkiemme avulla löydät varmasti unelmiesi kumppanin.,
+              key: -7be42f7b
+            label: Text
+            name: '-7be42f7b'
+            widget: text
+          - hint: 'Original text: Miksi Treffisivustot.com?, key: -2eb3458c'
+            label: Text
+            name: '-2eb3458c'
+            widget: string
+          - hint: >-
+              Original text: Meidän tehtävämme on auttaa sinua löytämään paras
+              mahdollinen deittisivusto, joka täyttää sinun tarpeesi.
+              Tavoitteenamme on tehdä deittailusta helpompaa ja hauskempaa
+              kaikille suomalaisille., key: -43bca20e
+            label: Text
+            name: '-43bca20e'
+            widget: text
+          - hint: >-
+              Original text: Muista, rakkaus on vain klikkauksen päässä!, key:
+              -576c8838
+            label: Text
+            name: '-576c8838'
+            widget: string
+          - hint: 'Original text: Artikkelit:, key: 39b6bbc2'
+            label: Text
+            name: 39b6bbc2
+            widget: string
+          - hint: "Original text: Parhaat Escort Sivustot\_Suomessa, key: 71ad550"
+            label: Text
+            name: 71ad550
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Sed rutrum porta enim et pellentesque. Vivamus a urna id
+              risus facilisis dapibus., key: 37b6e228
+            label: Text
+            name: 37b6e228
+            widget: text
+          - hint: 'Original text: Parhaat OnlyFans Hakemistot Suomessa, key: 3e2be166'
+            label: Text
+            name: 3e2be166
+            widget: string
+          - hint: 'Original text: Parhaat SeksiTreffit Suomessa , key: -29465846'
+            label: Text
+            name: '-29465846'
+            widget: string
+          - hint: 'Original text: SeksiTreffit Vs Sihteeriopisto, key: -29815adb'
+            label: Text
+            name: '-29815adb'
+            widget: string
+          - hint: 'Original text: nickname, key: 436a86e'
+            label: Text
+            name: 436a86e
+            widget: string
+          - hint: 'Original text: email, key: 5c24b9c'
+            label: Text
+            name: 5c24b9c
+            widget: string
+          - hint: 'Original text: user_type, key: 143d032e'
+            label: Text
+            name: 143d032e
+            widget: string
+          - hint: 'Original text: looking_user_type, key: -6ac292e'
+            label: Text
+            name: '-6ac292e'
+            widget: string
+          - hint: 'Original text: password, key: 4889ba9b'
+            label: Text
+            name: 4889ba9b
+            widget: string
+          - hint: 'Original text: birth_date, key: 45a9532e'
+            label: Text
+            name: 45a9532e
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit, curabitur maximus quam., key: 605b8a5b
+            label: Text
+            name: 605b8a5b
+            widget: string
+          - hint: 'Original text: Parhaat Sivustot Suomessa:, key: 685663cc'
+            label: Text
+            name: 685663cc
+            widget: string
+          - hint: 'Original text: Parhaat SeksiTreffit - Sivustot, key: 6fc0b718'
+            label: Text
+            name: 6fc0b718
+            widget: string
+          - hint: 'Original text: Parhaat Escort Sivustot Suomessa, key: -1b1cab30'
+            label: Text
+            name: '-1b1cab30'
+            widget: string
+          - hint: 'Original text: Parhaat Panoseuraa Sivustot, key: 6e1f89e7'
+            label: Text
+            name: 6e1f89e7
+            widget: string
+          - hint: 'Original text: Parhaat OnlyFans Suomi Sivustot, key: 28b8fbb3'
+            label: Text
+            name: 28b8fbb3
+            widget: string
+          - hint: 'Original text: Kaikkien aikojen, key: -694fc3fa'
+            label: Text
+            name: '-694fc3fa'
+            widget: string
+          - hint: 'Original text: Suomen Top 3:, key: -40b67b57'
+            label: Text
+            name: '-40b67b57'
+            widget: string
+          - hint: 'Original text: Sihteeriopisto, key: 3ee59b9f'
+            label: Text
+            name: 3ee59b9f
+            widget: string
+          - hint: 'Original text: SeksiTreffit, key: -4e8e373d'
+            label: Text
+            name: '-4e8e373d'
+            widget: string
+          - hint: 'Original text: Alastonsuomi, key: -4cbb580d'
+            label: Text
+            name: '-4cbb580d'
+            widget: string
+          - hint: 'Original text: Suomi24 Treffit, key: 13f87d5d'
+            label: Text
+            name: 13f87d5d
+            widget: string
+          - hint: 'Original text: Top 4 Escort Sivustot:, key: -1d96d80e'
+            label: Text
+            name: '-1d96d80e'
+            widget: string
+          - hint: 'Original text: SeksiTreffit.fi, key: 683295ce'
+            label: Text
+            name: 683295ce
+            widget: string
+          - hint: 'Original text: RealEscort, key: -17c55746'
+            label: Text
+            name: '-17c55746'
+            widget: string
+          - hint: 'Original text: EuroGirlEscort, key: 7f06fa05'
+            label: Text
+            name: 7f06fa05
+            widget: string
+          - hint: 'Original text: Top 4 Deittisivustot:, key: e10b087'
+            label: Text
+            name: e10b087
+            widget: string
+          - hint: 'Original text: SeksiTreffit Dating, key: 1f609308'
+            label: Text
+            name: 1f609308
+            widget: string
+          - hint: 'Original text: Alastonsuomi Treffit, key: -4f64473b'
+            label: Text
+            name: '-4f64473b'
+            widget: string
+          - hint: 'Original text: Sokerideittailu, key: -4f5e4eb4'
+            label: Text
+            name: '-4f5e4eb4'
+            widget: string
+          - hint: 'Original text: Sihteeriopisto-Treffit, key: 760387c4'
+            label: Text
+            name: 760387c4
+            widget: string
+          - hint: 'Original text: Parhaat Deittisivustot Suomessa 2024, key: 7531af93'
+            label: Text
+            name: 7531af93
+            widget: string
+          - hint: >-
+              Original text: Parhaat Escort Sivustot Suomessa 2024, key:
+              6cdb9250
+            label: Text
+            name: 6cdb9250
+            widget: string
+          - hint: 'Original text: Top 5 Deittisivustot Suomessa, key: 4e8877ca'
+            label: Text
+            name: 4e8877ca
+            widget: string
+          - hint: 'Original text: Lisää Artikkeleita... ->, key: 5dc66e2b'
+            label: Text
+            name: 5dc66e2b
+            widget: string
+          - hint: 'Original text: Navi:, key: 4790934'
+            label: Text
+            name: '4790934'
+            widget: string
+          - hint: 'Original text: Deittisivustot, key: 6609d11c'
+            label: Text
+            name: 6609d11c
+            widget: string
+          - hint: 'Original text: Escort Sivustot, key: -6695ca1'
+            label: Text
+            name: '-6695ca1'
+            widget: string
+          - hint: 'Original text: OnlyFans Sivustot, key: de4612f'
+            label: Text
+            name: de4612f
+            widget: string
+          - hint: 'Original text: Copyright ©2023 Treffisivustot.com, key: -78e8d3bf'
+            label: Text
+            name: '-78e8d3bf'
+            widget: string
+          - hint: 'Original text: ARTIKKELIT, key: 3457c358'
+            label: Text
+            name: 3457c358
+            widget: string
+          - hint: 'Original text: Lue Artikkeli, key: 33bb0938'
+            label: Text
+            name: 33bb0938
+            widget: string
+          - hint: 'Original text: Hakutulokset, key: 70729f1e'
+            label: Text
+            name: 70729f1e
+            widget: string
+          - hint: 'Original text: Etsi, key: 211f65'
+            label: Text
+            name: 211f65
+            widget: string
+          - hint: 'Original text: No matching results., key: -75764c4'
+            label: Text
+            name: '-75764c4'
+            widget: string
+          - hint: 'Original text: Uniikki Deittailu kokemus, key: 265d72f6'
+            label: Text
+            name: 265d72f6
+            widget: string
+          - hint: >-
+              Original text: Powerful, self-serve product and growth analytics
+              to help you convert, engage, and retain more., key: 3c116b15
+            label: Text
+            name: 3c116b15
+            widget: text
+          - hint: 'Original text: Demo, key: 207203'
+            label: Text
+            name: '207203'
+            widget: string
+          - hint: 'Original text: Sign up, key: -204ff442'
+            label: Text
+            name: '-204ff442'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /artikkelit/, key: 3fea7048'
+            label: Link
+            name: 3fea7048
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 39423fba
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3428d2ea'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 603da3c3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5171dee0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5626a6ef'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-56188f6e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '65e48566'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+local_backend: true
+publish_mode: editorial_workflow

@@ -3,7 +3,7 @@ backend:
   accept_roles:
     - admin
     - editor
-  branch: master2
+  branch: master
 media_folder: theme/assets/images
 public_folder: /assets/images
 collections:
